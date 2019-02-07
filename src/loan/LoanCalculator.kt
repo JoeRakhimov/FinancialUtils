@@ -17,6 +17,8 @@ class LoanCalculator {
 
         for (i in 0 until loan.numberOfPeriods) {
 
+            repaymentDate = mDateUtils.changeDate(repaymentDate, loan.periodType, loan.periodTypeAmountInOnePeriod)
+
             var principalAmount = BigDecimal(0)
             var interestAmount = remainingAmount.multiply(loan.getPeriodInterestRate())
             var repaymentAmount = BigDecimal(0)
@@ -43,8 +45,6 @@ class LoanCalculator {
                             remainingAmount = remainingAmount.setScale(2, RoundingMode.HALF_UP)
                     )
             )
-
-            repaymentDate = mDateUtils.changeDate(repaymentDate, loan.periodType, loan.periodTypeAmountInOnePeriod)
 
         }
 
